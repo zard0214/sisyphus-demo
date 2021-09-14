@@ -27,6 +27,7 @@
         <spring-cloud-stream.version>Horsham.SR3</spring-cloud-stream.version>
         <swagger.version>2.6.1</swagger.version>
 
+        <lombok.version>1.18.20</lombok.version>
         <mybatis.plus.version>3.4.3</mybatis.plus.version>
         <spring-statemachine.version>3.0.0</spring-statemachine.version>
         <flowable-engine.version>6.6.0</flowable-engine.version>
