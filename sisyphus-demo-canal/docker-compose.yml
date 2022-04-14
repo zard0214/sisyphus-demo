@@ -1,0 +1,21 @@
+version : '3'
+services:
+  canal-server:
+    image: canal/canal-server:v1.1.4
+    container_name: canal-server
+    ports:
+      - 11111:11111
+    environment:
+      - canal.instance.mysql.slaveId=12
+      - canal.auto.scan=false
+      - canal.destinations=test
+      - canal.instance.master.address=127.0.0.1:3306
+      - canal.instance.dbUsername=root
+      - canal.instance.dbPassword=123456
+      - canal.mq.topic=test
+      - canal.instance.filter.regex=esen_approval.apt_approval
+    volumes:
+      - ./canal-server/conf/:/admin/canal-server/conf/
+      - ./canal-server/logs/:/admin/canal-server/logs/
+networks:
+  backend:

@@ -16,10 +16,10 @@ spring:
         service: sisyphus-demo-canal
 canal:
   host: 127.0.0.1
-  port: 11110
-  destination: example
-  username: canal
-  password: canal
+  port: 11111
+  destination: test
+  username:
+  password:
   acknowledge-mode: true
 #配置日志
 logging:
