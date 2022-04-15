@@ -33,7 +33,8 @@
         <flowable-engine.version>6.6.0</flowable-engine.version>
         <rocketmq.version>2.2.0</rocketmq.version>
         <mybatis-starter.version>1.2.0</mybatis-starter.version>
-        <kafka.version>2.6.7</kafka.version>
+        <kafka.version>2.5.1.RELEASE</kafka.version>
+        <kafka2.version>2.5.0</kafka2.version>
         <sentinel-datasource.version>1.7.2</sentinel-datasource.version>
         <sentinel-start.version>2.1.0.RELEASE</sentinel-start.version>
         <flyway-core.version>7.9.0</flyway-core.version>
@@ -378,6 +379,11 @@
                 <artifactId>spring-kafka</artifactId>
                 <version>${kafka.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka2.version}</version>
+            </dependency>
             <!-- kafka -->
 
             <!-- rocketmq -->
@@ -409,6 +415,12 @@
                 <groupId>org.springframework.session</groupId>
                 <artifactId>spring-session-data-redis</artifactId>
                 <version>${spring-boot-starter-redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
 
             <dependency>
@@ -727,35 +739,43 @@
 
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>maven-nexus</id>
-            <name>maven-nexus</name>
-            <url>http://localhost:8081/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <id>Central Repository</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+<!--        <repository>-->
+<!--            <id>spring-milestones</id>-->
+<!--            <name>Spring Milestones</name>-->
+<!--            <url>https://repo.spring.io/milestone</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>aliyun</id>-->
+<!--            <name>aliyun</name>-->
+<!--            <url>https://maven.aliyun.com/repository/public</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>maven-nexus</id>-->
+<!--            <name>maven-nexus</name>-->
+<!--            <url>http://localhost:8081/repository/maven-public/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
     </repositories>
 
     <pluginRepositories>
