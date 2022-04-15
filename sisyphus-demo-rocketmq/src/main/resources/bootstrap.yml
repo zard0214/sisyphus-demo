@@ -17,7 +17,9 @@ spring:
   rocketmq:
     nameServer: 127.0.0.1:9876
     producer:
-      group: boot_producer_group
+      producerGroup: boot_producer_group
+    consumer:
+      pushConsumer: boot_producer_group_consumer
 #配置日志
 logging:
   config: classpath:logging-config.xml
