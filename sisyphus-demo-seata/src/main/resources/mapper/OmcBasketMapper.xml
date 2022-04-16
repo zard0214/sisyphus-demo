@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this is the map for mapping the fields name between java entity and mysql -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sisyphus.demo.seata.mapper.OmcBasketMapper">
+    <resultMap id="BaseResultMap" type="com.sisyphus.demo.seata.domain.dto.OmcBasketDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="product_id" jdbcType="BIGINT" property="productId"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="checked" jdbcType="INTEGER" property="checked"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ${alias}.id, ${alias}.version, ${alias}.user_id, ${alias}.product_id, ${alias}.quantity,
+        ${alias}.checked
+    </sql>
+
+    <select id="findByUserId" resultType="com.sisyphus.demo.seata.domain.dto.OmcBasketDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_omc.s_omc_basket p
+        where
+        p.user_id = #{userId,jdbcType=INTEGER} and p.is_deleted = 0
+    </select>
+
+    <select id="findByUserIdAndProductId" resultType="com.sisyphus.demo.seata.domain.dto.OmcBasketDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_omc.s_omc_basket p
+        where
+        p.user_id = #{userId,jdbcType=INTEGER} and p.product_id = #{productId,jdbcType=INTEGER} and p.is_deleted = 0
+    </select>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        update sisyphus_omc.s_omc_basket
+        set is_deleted =
+        <foreach collection="baskets" item="item" index="index"
+                 separator=" " open="case ID" close="end">
+            when #{item.id} then 1
+        </foreach>
+        where id in
+        <foreach collection="baskets" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+</mapper>

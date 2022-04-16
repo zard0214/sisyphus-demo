@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this is the map for mapping the fields name between java entity and mysql -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sisyphus.demo.seata.mapper.MdcProductCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.sisyphus.demo.seata.domain.dto.MdcProductCategoryDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="category_code" jdbcType="VARCHAR" property="categoryCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ${alias}.id, ${alias}.version, ${alias}.category_code, ${alias}.name
+    </sql>
+
+    <select id="findByCategoryId" resultType="com.sisyphus.demo.seata.domain.dto.MdcProductCategoryDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_mdc.s_mdc_product_category p
+        where
+        p.id= #{categoryId,jdbcType=INTEGER} and p.is_deleted = 0
+    </select>
+
+    <select id="findList" resultType="com.sisyphus.demo.seata.domain.dto.MdcProductCategoryDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_mdc.s_mdc_product_category p
+        where p.is_deleted = 0
+    </select>
+</mapper>

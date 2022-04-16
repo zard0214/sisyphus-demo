@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this is the map for mapping the fields name between java entity and mysql -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sisyphus.demo.seata.mapper.OmcOrderMapper">
+    <resultMap id="BaseResultMap" type="com.sisyphus.demo.seata.domain.dto.OmcOrderDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="shipping_id" jdbcType="BIGINT" property="shippingId"/>
+        <result column="payment" jdbcType="DECIMAL" property="payment"/>
+        <result column="payment_type" jdbcType="INTEGER" property="paymentType"/>
+        <result column="postage" jdbcType="DECIMAL" property="postage"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime"/>
+        <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="close_time" jdbcType="TIMESTAMP" property="closeTime"/>
+        <collection property="omcOrderDetailList" column="order_no" javaType="ArrayList"
+                    ofType="com.sisyphus.demo.seata.domain.dto.OmcOrderDetailDTO" select="findDetailByOrderNo"/>
+    </resultMap>
+
+    <resultMap id="OrderDetailResultMap" type="com.sisyphus.demo.seata.domain.dto.OmcOrderDetailDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="detail_no" jdbcType="VARCHAR" property="detailNo"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="current_unit_price" jdbcType="DECIMAL" property="currentUnitPrice"/>
+        <result column="quantity" jdbcType="VARCHAR" property="quantity"/>
+        <result column="total_price" jdbcType="DECIMAL" property="totalPrice"/>
+    </resultMap>
+
+    <sql id="Detail_Column_List">
+        ${alias}.id, ${alias}.detail_no, ${alias}.order_no, ${alias}.product_name, ${alias}.current_unit_price
+                , ${alias}.quantitiy, ${alias}.total_price
+    </sql>
+
+    <sql id="Base_Column_List">
+        ${alias}.id, ${alias}.version, ${alias}.order_no, ${alias}.user_id, ${alias}.shipping_id, ${alias}.payment,
+        ${alias}.payment_type, ${alias}.postage, ${alias}.status, ${alias}.payment_time, ${alias}.send_time, ${alias}.end_time,
+        ${alias}.close_time
+    </sql>
+
+
+    <select id="findDetailByOrderNo" resultMap="OrderDetailResultMap">
+        select
+        <include refid="Detail_Column_List">
+            <property name="alias" value="ar"></property>
+        </include>
+        from
+        sisyphus_omc.s_omc_order p
+        inner join sisyphus_omc.s_omc_order_detail ood on p.order_no = ood.order_no
+        where
+        p.order_no = #{orderNo,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByUserId" resultType="com.sisyphus.demo.seata.domain.dto.OmcOrderDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_omc.s_omc_order p
+        where
+        p.user_id = #{userId,jdbcType=INTEGER} and p.is_deleted = 0
+    </select>
+
+    <select id="findList" resultType="com.sisyphus.demo.seata.domain.dto.OmcOrderDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_omc.s_omc_order p
+        where
+        p.is_deleted = 0
+    </select>
+
+</mapper>

@@ -1,1 +1,1 @@
-https://github.com/alibaba/canal/wiki/QuickStart
+https://skywalking.apache.org/

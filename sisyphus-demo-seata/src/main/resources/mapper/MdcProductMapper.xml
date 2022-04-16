@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this is the map for mapping the fields name between java entity and mysql -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sisyphus.demo.seata.mapper.MdcProductMapper">
+    <resultMap id="BaseResultMap" type="com.sisyphus.demo.seata.domain.dto.MdcProductDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="product_code" jdbcType="VARCHAR" property="productCode"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="subtitle" jdbcType="VARCHAR" property="subtitle"/>
+        <result column="main_image" jdbcType="VARCHAR" property="mainImage"/>
+        <result column="sub_imagess" jdbcType="VARCHAR" property="subImages"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ${alias}.id, ${alias}.product_code, ${alias}.category_id, ${alias}.name, ${alias}.subtitle, ${alias}.main_image, ${alias}.sub_images, ${alias}.detail, ${alias}.price,
+        ${alias}.stock, ${alias}.status
+    </sql>
+
+    <select id="findByCategoryId" resultType="com.sisyphus.demo.seata.domain.dto.MdcProductDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_mdc.s_mdc_product p
+        where
+        p.category_id = #{categoryId,jdbcType=INTEGER} and p.is_deleted = 0
+    </select>
+
+    <select id="findList" resultType="com.sisyphus.demo.seata.domain.dto.MdcProductDTO">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="p"></property>
+        </include>
+        from
+        sisyphus_mdc.s_mdc_product p where p.is_deleted = 0
+    </select>
+
+</mapper>
