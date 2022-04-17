@@ -19,7 +19,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * use this annotation to scan the Data Access Object for mybatis
  */
 @MapperScan(basePackages = {
+        "com.sisyphus.demo.seata.common",
+        "com.sisyphus.demo.seata.config",
+        "com.sisyphus.demo.seata.domain",
         "com.sisyphus.demo.seata.mapper",
+        "com.sisyphus.demo.seata.service",
+        "com.sisyphus.demo.seata.service.impl",
 })
 /**
  * enable transaction

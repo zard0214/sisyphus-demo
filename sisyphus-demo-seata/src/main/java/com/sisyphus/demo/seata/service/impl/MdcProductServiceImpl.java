@@ -15,7 +15,7 @@ import java.util.List;
  * @date Created in 02/03/2022 16:11
  */
 @Slf4j
-@Service(value = "mdcProductService")
+@Service
 public class MdcProductServiceImpl extends ServiceImpl<MdcProductMapper, MdcProduct> implements MdcProductService {
 
     @Override

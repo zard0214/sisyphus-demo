@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * use this annotaton to register omcBasketService to spring container
  */
-@Service(value = "omcBasketService")
+@Service
 public class OmcBasketServiceImpl extends ServiceImpl<OmcBasketMapper, OmcBasket> implements OmcBasketService {
 
     protected Log log = LogFactory.getLog(getClass());

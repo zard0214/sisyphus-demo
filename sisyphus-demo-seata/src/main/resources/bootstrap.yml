@@ -1,5 +1,34 @@
 server:
-  port: 8080
+  port: 8005
+# seata配置
+seata:
+  enabled: true
+  # Seata 应用编号，默认为 ${spring.application.name}
+  application-id: sisyphus-demo-seata
+  # Seata 事务组编号，用于 TC 集群名
+  tx-service-group: seataserver-group
+  # 关闭自动代理
+  enable-auto-data-source-proxy: false
+  enableAutoDataSourceProxy: true
+  # 服务配置项
+  service:
+    # 虚拟组和分组的映射
+    vgroup-mapping:
+      seataserver-group: default
+    # 分组和 Seata 服务的映射
+    grouplist:
+      default: 127.0.0.1:8091
+  config:
+    type: nacos
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace:
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
 spring:
   main:
     allow-bean-definition-overriding: true

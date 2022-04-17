@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * use this annotaton to register omcOrderDetailService to spring container
  */
-@Service(value = "omcOrderDetailService")
+@Service
 public class OmcOrderDetailServiceImpl extends ServiceImpl<OmcOrderDetailMapper, OmcOrderDetail> implements OmcOrderDetailService {
 
     @Override

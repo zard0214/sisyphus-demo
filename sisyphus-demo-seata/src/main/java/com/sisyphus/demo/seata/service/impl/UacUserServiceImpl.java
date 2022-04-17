@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * use this annotaton to register uacUserService to spring container
  */
-@Service(value = "uacUserService")
+@Service
 public class UacUserServiceImpl extends ServiceImpl<UacUserMapper, UacUser> implements UacUserService {
 
     /**
