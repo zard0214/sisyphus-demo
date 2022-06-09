@@ -76,6 +76,8 @@
         <commons-io.version>2.2</commons-io.version>
         <dockerfile-version>1.4.9</dockerfile-version>
         <canal.version>1.1.4</canal.version>
+        <esayexcel.version>2.1.6</esayexcel.version>
+        <poi.version>3.17</poi.version>
     </properties>
 
     <modules>
@@ -189,6 +191,29 @@
         <module>sisyphus-demo-springmvn</module>
         <module>sisyphus-demo-hibernate</module>
         <module>sisyphus-demo-ibatis</module>
+        <module>sisyphus-demo-easyexcel</module>
+        <module>sisyphus-demo-mockito</module>
+<!--        <module>sisyphus-demo-powerMock</module>-->
+<!--        <module>sisyphus-demo-powerMock</module>-->
+
+<!--        <module>sisyphus-demo-oracle</module>-->
+<!--        <module>sisyphus-demo-mssql</module>-->
+<!--        <module>sisyphus-demo-plsq</module>-->
+<!--        <module>sisyphus-demo-tsql</module>-->
+<!--        <module>sisyphus-demo-postgresql</module>-->
+
+<!--        <module>sisyphus-demo-graph</module>-->
+<!--        <module>sisyphus-demo-column</module>-->
+
+<!--        <module>sisyphus-demo-aws</module>-->
+<!--        <module>sisyphus-demo-azure</module>-->
+
+<!--        <module>sisyphus-demo-asynchronous</module>-->
+<!--        <module>sisyphus-demo-multi-threading</module>-->
+<!--        <module>sisyphus-demo-concurrency</module>-->
+<!--        <module>sisyphus-demo-devops</module>-->
+
+<!--        <module>sisyphus-demo-guice</module>-->
 
     </modules>
 
@@ -632,6 +657,31 @@
                 <groupId>com.alibaba.otter</groupId>
                 <artifactId>canal.client</artifactId>
                 <version>${canal.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+
+            <!-- easyexcel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${esayexcel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
 
             <!-- sm -->

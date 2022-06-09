@@ -100,6 +100,7 @@
 | xxl-sso            |            |
 | zookeeper          |            |
 | zuul               |            |
+| mockito            |            |
 
 
 [comment]: <> (|   |  |)
