@@ -67,7 +67,7 @@
 | redis              |            |
 | ribbon             |            |
 | rocketmq           |            |
-| seata              |            |
+| seata              | yes        |
 | security           |            |
 | sentinel           |            |
 | servicemesh        |            |
